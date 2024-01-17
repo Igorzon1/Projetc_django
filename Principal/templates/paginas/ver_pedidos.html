@@ -1,0 +1,47 @@
+<style>
+    h1 {
+        padding: 20px;
+        margin: 0px;
+    }
+
+    div {
+        margin-top: 0px;
+    }
+    .result-item {
+        background-color: #e1e1e1; /* Fundo cinza */
+        padding: 10px;
+        border-radius: 8px;
+        margin: 10px 0; /* Adicionado margem entre os resultados */
+    }
+
+    .result-item:nth-child(odd) {
+        background-color: #ffffff; /* Fundo branco para itens ímpares */
+    }
+</style>
+
+<h1>Todos os pedidos</h1>
+
+<form method="get" action="{% url 'pesquisar' %}">
+    <label for="produto">Produto:</label>
+    <input type="text" name="produto" value="{{ request.GET.produto }}">
+
+    <label for="cliente">Cliente:</label>
+    <input type="text" name="cliente" value="{{ request.GET.cliente }}">
+
+    <!-- Adicione mais campos de pesquisa conforme necessário -->
+
+    <button type="submit">Pesquisar</button>
+</form>
+
+<div class="results-container">
+    {% for pedido in pedidos %}
+        <div class="result-item"> 
+            <strong>Nome do Produto:</strong> {{ pedido.nome_produto }}<br>
+            <strong>Cliente:</strong> {{ pedido.cliente.nome }}<br>
+            <strong>Quantidade:</strong> {{ pedido.quantidade }}<br>
+            <strong>Valor Unitário:</strong> R$ {{ pedido.valor_unitario }}<br>
+            <strong>Valor Total:</strong> R$ {{ pedido.valor_total }}<br>
+            <strong>Data da Compra:</strong> {{ pedido.data_compra }}<br>
+        </div>
+    {% endfor %}
+</div>

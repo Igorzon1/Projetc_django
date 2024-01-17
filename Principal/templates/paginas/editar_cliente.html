@@ -1,0 +1,60 @@
+<style>
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    h2 {
+        color: #333;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 8px;
+        margin-bottom: 16px;
+    }
+</style>
+
+
+<form method="post">
+    {% csrf_token %}
+    <h2>Dados do Cliente</h2>
+    <label for="{{ form.nome.id_for_label }}">Nome:</label>
+    {{ form.nome }}
+    <br>
+
+    <label for="{{ form.cpf.id_for_label }}">CPF:</label>
+    {{ form.cpf }}
+    <br>
+
+    <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+    {{ form.telefone }}
+    <br>
+
+    <label for="{{ form.residencia.id_for_label }}">Residência:</label>
+    {{ form.residencia }}
+    <br>
+
+    <button type="submit">Salvar Alterações</button>
+</form>

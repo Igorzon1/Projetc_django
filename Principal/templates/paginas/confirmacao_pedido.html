@@ -1,0 +1,23 @@
+<style>
+    div {
+        background-color: aliceblue;
+    }
+    li {
+        list-style: nome;
+    }
+</style>
+<div>
+    <h1>Confirmação de Pedido</h1>
+    <p>Seu pedido foi realizado com sucesso.</p>
+    <p>Detalhes do último pedido:</p>
+    <ul>
+        <li>ID do Pedido: {{ ultimo_pedido.id_pedido }}</li>
+        <li>Cliente: {{ ultimo_pedido.cliente.nome }}</li>
+        <li>Nome do Produto: {{ ultimo_pedido.nome_produto }}</li>
+        <li>Quantidade: {{ ultimo_pedido.quantidade }}</li>
+        <li>Valor Unitário: {{ ultimo_pedido.valor_unitario }}</li>
+        <li>Valor Total: {{ ultimo_pedido.valor_total }}</li>
+    </ul>
+</div>
+
+<!-- Adicione um link para salvar em PDF -->

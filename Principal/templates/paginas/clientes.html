@@ -1,0 +1,38 @@
+<style>
+    h1 {
+        padding: 20px;
+        margin: 0px;
+    }
+
+    div {
+        margin-top: 0px;
+    }
+    .result-item {
+        background-color: #e1e1e1; /* Fundo cinza */
+        padding: 10px;
+        border-radius: 8px;
+        margin: 10px 0; /* Adicionado margem entre os resultados */
+    }
+
+    .result-item:nth-child(odd) {
+        background-color: #ffffff; /* Fundo branco para itens ímpares */
+    }
+
+    .edit-link {
+        color: blue; /* Cor do link */
+        text-decoration: underline; /* Sublinhado para indicar que é um link */
+        cursor: pointer; /* Mostrar cursor de link ao passar o mouse */
+        margin-left: 10px; /* Espaçamento à esquerda do link */
+    }
+</style>
+
+<h1>Resultados da Pesquisa</h1>
+
+<div class="results-container">
+    {% for cliente in clientes %}
+        <div class="result-item"> 
+            Id {{ cliente.id_cliente}} - Nome:{{ cliente.nome }} - CPF: {{ cliente.cpf }} - Telefone: {{ cliente.telefone }} - Residência: {{ cliente.residencia }}
+            <a href="{% url 'editar_cliente' cliente.id_cliente %}" class="edit-link">Editar</a>
+        </div>
+    {% endfor %}
+</div>

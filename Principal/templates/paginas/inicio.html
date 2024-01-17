@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Cadastros</title>
+    <style>
+        body {
+            background-color: rgb(226, 226, 226);
+            margin: 0px;
+            height: 100vh;
+        }
+        nav{
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 10px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            background-color: blueviolet;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        nav li {
+            margin-right: 50px;
+            font-size: 25px;
+        }
+        nav a {
+            color: aliceblue;
+            text-decoration: none;
+        }
+        div li {
+            list-style: none;
+            font-size: 17px;
+            background-color: rgb(170, 79, 255);
+            text-align:justify;
+        }
+        .input-container h5 {
+            font-size: 15px;
+            margin: 1px; /* Remove a margem do título */
+        }
+        .input-container{
+            margin-bottom: 10px;
+        }
+        .square-container {
+            border-radius: 15px;
+            padding: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: blueviolet;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .square {
+            color: aliceblue;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="#">Cadastrar</a></li>
+            <li><a href="{% url 'verpedido'%}">Pedidos</a></li>
+        </ul>
+    </nav>
+    <div class="square-container">
+        <div class="square">
+            <h1>Clientes cadastrados</h1>
+            <ul class="client-list">
+                {% for cliente in clientes %}
+                    <li>{{ cliente.id_cliente}} - {{ cliente.nome}} - {{ cliente.telefone }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Pesquisar clientes</h3>
+            <form method="get" action="{% url 'pesquisar_clientes' %}">
+                <input type="text" name="query" placeholder="Digite o nome...">
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
+        <div class="square">
+            <form method="post" action="{% url 'cadastrar_cliente' %}">
+                {% csrf_token %}
+                <h1>Adicionar Clientes</h1>
+                <div class="input-container">
+                    <h5>nome</h5>
+                    <input type="text" name="nome">
+                </div>
+    
+                <div class="input-container">
+                    <h5>cpf</h5>
+                    <input type="text" name="cpf">
+                </div>
+    
+                <div class="input-container">
+                    <h5>telefone</h5>
+                    <input type="text" name="telefone">
+                </div>
+                    
+                <div class="input-container">
+                    <h5>residencia</h5>
+                    <input type="text" name="residencia">
+                </div>
+    
+                <button>adicionar</button>
+            </form>
+        </div>
+        <div class="square">
+            <form method="post" action="{% url 'pedido' %}">
+                <h1>Adicionar Pedidos</h1>
+                {% csrf_token %}
+                <div class="input-container">
+                    <label for="cliente_id">ID do Cliente:</label>
+                    <input type="text" name="cliente_id">
+                </div>
+                
+                <div class="input-container">
+                    <label for="nome_produto">Nome do Produto:</label>
+                    <input type="text" name="nome_produto">
+                </div>
+                
+
+                <div class="input-container">
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" name="quantidade">
+                </div>
+
+                <div class="input-container">
+                    <label for="valor_unitario">Valor Unitário:</label>
+                    <input type="text" name="valor_unitario">
+                </div>
+            
+                <button type="submit">Cadastrar Pedido</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
